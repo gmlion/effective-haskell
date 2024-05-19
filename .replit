@@ -1,0 +1,16 @@
+run = "cabal update && { echo main ; cat - ; } | exec cabal repl"
+
+[nix]
+channel = "stable-23_11"
+
+[languages.haskell]
+pattern = "**/*.hs"
+
+[languages.haskell.languageServer]
+start = ["haskell-language-server-wrapper", "--lsp"]
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", ".ghci"]
+
+[deployment]
+run = ["sh", "-c", "cabal update && { echo main ; cat - ; } | exec cabal repl"]
